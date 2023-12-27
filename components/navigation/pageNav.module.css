@@ -1,0 +1,15 @@
+.navBox {
+    border-bottom: 1px solid gray;
+    border-top: 1px solid gray;
+    padding: 15px 0 15px 25px;
+}
+
+.navBox > a {
+    margin-right: 2rem;
+}
+
+.active {
+    font-style: italic;
+    font-weight: bold;
+    color: black;
+}

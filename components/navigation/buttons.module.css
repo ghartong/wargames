@@ -1,0 +1,28 @@
+.areaContainer {
+    background-color: aliceblue;
+    bottom: 0;
+    left: 0;
+    padding: 15px;
+    position: absolute;
+}
+
+.closeButton {
+    border-radius: 25%;
+    font-weight: bold;
+    width: 50px;
+}
+
+.closeContainer {
+    background-color: transparent;
+    position: absolute;
+    right: 0;
+    top: 0;
+}
+
+.heroContainer {
+    background-color: aliceblue;
+    left: 0;
+    padding: 15px;
+    position: absolute;
+    top: 0;
+}

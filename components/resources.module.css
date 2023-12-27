@@ -1,0 +1,25 @@
+.panel {
+    background-color: aliceblue;
+    position: absolute;
+    right: 0;
+    top: 0;
+}
+
+.pane {
+    border: 1px solid black;
+    display: flex;
+    flex: 1 0 0 auto;
+    font-size: 0.75rem;
+    justify-content: space-between;
+    padding: 5px;
+    text-wrap: nowrap;
+    width: 100px;
+}
+
+.meter {
+    border: 1px solid black;
+    font-size: 0.65rem;
+    padding: 2px;
+    text-align: center;
+    width: 50px;
+}

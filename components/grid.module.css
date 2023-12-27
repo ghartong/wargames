@@ -1,0 +1,30 @@
+.kingdomGrid {
+    background-color: pink;
+    display: grid;
+    grid-template-columns: repeat(6 1fr);
+    grid-template-rows: repeat(5 20%);
+    grid-template-areas: 
+        "resource_1 resource_1 . . army army"
+        "resource_1 resource_1 . . army army"
+        ". . castle castle . ."
+        "resource_2 resource_2 . . . ."
+        "resource_2 resource_2 . . . .";
+    height: 400px;
+    margin: 50px auto;
+}
+
+.armyCell {
+    grid-area: army;
+}
+
+.castleCell {
+    grid-area: castle;
+}
+
+.resourceCell_1 {
+    grid-area: resource_1;
+}
+
+.resourceCell_2 {
+    grid-area: resource_2;
+}
