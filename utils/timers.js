@@ -37,7 +37,7 @@ export const buildCookie = ({ asset, buildingLvl = 1, heroLvl = 1} ) => {
     return {name: capFirstLetter(asset), targetDate: later({seconds: cost})};
 };
 
-export const updateTimerCookie = ({ method, asset, buildingLvl, heroLvl}) => {
+export const updateTimerCookie = ({ method = 'add', asset, buildingLvl, heroLvl}) => {
     const cc = JSON.parse(window.localStorage.getItem("timers")) || [];
     const index = cc.map((o) => o.name).indexOf(capFirstLetter(asset));
 
@@ -53,3 +53,13 @@ export const updateTimerCookie = ({ method, asset, buildingLvl, heroLvl}) => {
     window.dispatchEvent(new Event("timerStorage"));
 };
 
+export const findTimerByName = ({ name }) => {
+    console.log('name', name)
+    const timers = window.localStorage.getItem("timers");
+    console.log('timers', timers)
+    const timer = JSON.parse(timers);
+console.log('timer', timer)
+    const index = timer.map((o) => o.name).indexOf(name);
+    console.log('index', index)
+    return index >= 0 ? timer.splice(index, 1) : null;
+};
