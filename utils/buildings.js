@@ -24,7 +24,7 @@ const buildingProduction = ({ asset, buildingLvl, heroLvl }) => {
     return buildingBase[asset] * (buildingFee + heroBonus);
 };
 
-export const buildCookie = ({ plot, asset, buildingLvl = 1} ) => {
+export const buildCookie = ({ plot, asset, buildingLvl = 1 } ) => {
     return {plot: plot, building: asset + "_" + buildingLvl};
 };
 
@@ -36,12 +36,26 @@ export const updatePlotsCookie = ({ method, plot, asset, buildingLvl, heroLvl}) 
         const uc = buildCookie({plot, asset, buildingLvl});
         cc.push(uc);
         window.localStorage.setItem("plots", JSON.stringify(cc));
-        updateTimerCookie({asset: 'construction', buildingLvl: buildingLvl, heroLvl: heroLvl});
+        updateTimerCookie({asset: 'construction', buildingLvl: buildingLvl, heroLvl: heroLvl, plot: plot});
+    } else if (method === 'update' && index >= 0) {
+        cc.splice(index, 1);
+        const uc = buildCookie({plot, asset, buildingLvl});
+        cc.push(uc);
+        window.localStorage.setItem("plots", JSON.stringify(cc));
+        updateTimerCookie({asset: 'construction', buildingLvl: buildingLvl, heroLvl: heroLvl, plot: plot});
     } else if (method === 'delete' && index >= 0) {
         cc.splice(index, 1);
         window.localStorage.setItem("plots", JSON.stringify(cc));
     }
 
     window.dispatchEvent(new Event("plotStorage"));
+};
+
+export const findBuildingByPlot = (plot) => {
+    const buildings = window.localStorage.getItem("plots");
+    const building = JSON.parse(buildings);
+    const index = building.map((o) => o.plot).indexOf(plot);
+
+    return index >= 0 ? building.splice(index, 1) : null;
 };
 
