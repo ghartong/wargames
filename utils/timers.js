@@ -26,23 +26,23 @@ const timerBase = {
     traveling: 10,
 }
 
-const buildCost = ({ asset, buildingLvl, heroLvl }) => {
+export const buildCost = ({ asset, buildingLvl, heroLvl }) => {
     const buildingFee = timerMultiplier[asset] * buildingLvl;
     const heroDeduction = timerMultiplier[asset] * (heroLvl * 0.1);
     return timerBase[asset] * (buildingFee - heroDeduction); 
 };
 
-export const buildCookie = ({ asset, buildingLvl = 1, heroLvl = 1} ) => {
+export const buildCookie = ({ asset, buildingLvl = 1, heroLvl = 1, plot = ''} ) => {
     const cost = buildCost({asset, buildingLvl, heroLvl});
-    return {name: capFirstLetter(asset), targetDate: later({seconds: cost})};
+    return {name: capFirstLetter(asset), targetDate: later({seconds: cost}), plot: plot};
 };
 
-export const updateTimerCookie = ({ method = 'add', asset, buildingLvl, heroLvl}) => {
+export const updateTimerCookie = ({ method = 'add', asset, buildingLvl, heroLvl, plot}) => {
     const cc = JSON.parse(window.localStorage.getItem("timers")) || [];
     const index = cc.map((o) => o.name).indexOf(capFirstLetter(asset));
 
     if (method === 'add' && index === -1) {
-        const uc = buildCookie({asset, buildingLvl, heroLvl});
+        const uc = buildCookie({asset, buildingLvl, heroLvl, plot});
         cc.push(uc);
         window.localStorage.setItem("timers", JSON.stringify(cc));
     } else if (method === 'delete' && index >= 0) {
@@ -54,12 +54,9 @@ export const updateTimerCookie = ({ method = 'add', asset, buildingLvl, heroLvl}
 };
 
 export const findTimerByName = ({ name }) => {
-    console.log('name', name)
     const timers = window.localStorage.getItem("timers");
-    console.log('timers', timers)
     const timer = JSON.parse(timers);
-console.log('timer', timer)
     const index = timer.map((o) => o.name).indexOf(name);
-    console.log('index', index)
+
     return index >= 0 ? timer.splice(index, 1) : null;
 };
