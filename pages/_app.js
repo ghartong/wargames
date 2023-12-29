@@ -1,9 +1,14 @@
 import { useEffect, useState } from 'react';
 
+import { initHero } from '../utils/hero';
 import '../styles/global.css';
 
 export default function App({ Component, pageProps }) {
     const [timer, setTimer] = useState(0);
+
+    useEffect(() => {
+      initHero();
+    }, []);
 
     // TODO re-eval.. do I need?
     useEffect(() => {

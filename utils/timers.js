@@ -32,7 +32,7 @@ export const buildCost = ({ asset, buildingLvl, heroLvl }) => {
     return timerBase[asset] * (buildingFee - heroDeduction); 
 };
 
-export const buildCookie = ({ asset, buildingLvl = 1, heroLvl = 1, plot = ''} ) => {
+const buildCookie = ({ asset, buildingLvl = 1, heroLvl = 1, plot = ''} ) => {
     const cost = buildCost({asset, buildingLvl, heroLvl});
     return {name: capFirstLetter(asset), targetDate: later({seconds: cost}), plot: plot};
 };

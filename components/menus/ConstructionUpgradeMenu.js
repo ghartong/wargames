@@ -8,17 +8,22 @@ const ConstructionUpgradeMenu = ({ plot, building, onClose }) => {
     const buildingLevel = building.split('_')[1];
 
     const handleUpgrade = () => {
-        // TODO need validation for gold, timers, etc
+        // TODO get gold price of upgrade
+        const price = 43;
+        // TODO check wallet - does hero have enough gold?
+        const gold = 559;
 
         const hasExistingTimer = !!findTimerByName({name: 'Construction'});
         if (hasExistingTimer) {
             setErrMsg('There is already a construction happening.');
+        } else if (price > gold) {
+            setErrMsg('You do not have enough gold');
         } else {
             // TODO get real hero level
             updatePlotsCookie({
                 method: 'update',
                 plot: plot,
-                asset: 'Construction',
+                asset: buildingName,
                 buildingLvl: (buildingLevel * 1 + 1),
                 heroLvl: 1
             });

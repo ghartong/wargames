@@ -24,7 +24,7 @@ const buildingProduction = ({ asset, buildingLvl, heroLvl }) => {
     return buildingBase[asset] * (buildingFee + heroBonus);
 };
 
-export const buildCookie = ({ plot, asset, buildingLvl = 1 } ) => {
+const buildCookie = ({ plot, asset, buildingLvl = 1 } ) => {
     return {plot: plot, building: asset + "_" + buildingLvl};
 };
 
